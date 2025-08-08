@@ -2,22 +2,53 @@ python -V
 pip list
 pip install django
 
--- crear entorno virtual
-python -m venv env
 
--- activar le entorno
-env\Scripts\activate --win
-source env/bin/activate --mac/linux
+-1 crear entorno virtual (simula)
+python -m venv env (nombre_entorno)
 
--- crear proyecto
-django-admin startproject nombre_proyecto
+-2 activar le entorno
+call nientorno\Scripts\activate -- (cmd)win
+source nientorno/Scripts/activate (git bash) -- win
 
+source nientorno/bin/activate --mac/linux
+
+-3 instalar dependencias en el entorno
+pip install django
+pip list
+
+-4 crear proyecto
+eje: django-admin startproject nombre_proyecto
+
+django-admin startproject portafolio
 
 -- accedemos al proyecto
-cd nombre_proyecto
+cd portafolio
 
 -- *instalar las dependencias a partir del archivo requirements.txt 
 pip install -r requirements.txt 
 
 -- creamos una aplicación dentro del proyecto
 python manage.py startapp login
+
+-- agregar app al setting
+INSTALLED_APPS = [
+        ...,
+        'login'
+]
+
+-- crear en nuestra app el archivo urls.py
+
+-- en urls.py principal importamos las rutas de nuestras apps.
+from django.urls import include,path
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('login.urls')),
+]
+
+-- configuramos nuestras rutas
+from django.urls import path
+from login import views
+
+urlpatterns = [
+    path('', views.home, name='home')
+]
