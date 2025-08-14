@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / compiled files
+*.pyc
+*~
+__pycache__/
+
+# Virtual environment
+env/
+venv/
+.venv/
+
+# Database
+db.sqlite3
+
+# Media and static files (if collected locally)
+media/
+static/
+
+# Environment variables and sensitive data
+.env
+*.ini
+*.json # If containing sensitive data like API keys
+*.log
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

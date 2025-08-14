@@ -1,7 +1,8 @@
 python -V
 pip list
 pip install django
-
+-- *instalar las dependencias a partir del archivo requirements.txt 
+pip install -r requirements.txt 
 
 -1 crear entorno virtual (simula)
 python -m venv env (nombre_entorno)
@@ -13,6 +14,7 @@ source nientorno/Scripts/activate (git bash) -- win
 source nientorno/bin/activate --mac/linux
 
 -3 instalar dependencias en el entorno
+pip list
 pip install django
 pip list
 
@@ -23,9 +25,6 @@ django-admin startproject portafolio
 
 -- accedemos al proyecto
 cd portafolio
-
--- *instalar las dependencias a partir del archivo requirements.txt 
-pip install -r requirements.txt 
 
 -- creamos una aplicación dentro del proyecto
 python manage.py startapp login
@@ -45,10 +44,38 @@ urlpatterns = [
     path('', include('login.urls')),
 ]
 
--- configuramos nuestras rutas
+-- configuramos nuestras rutas login->urls.py
 from django.urls import path
 from login import views
 
 urlpatterns = [
     path('', views.home, name='home')
 ]
+
+-- en views de nuestra app:
+from django.shortcuts import render, HttpResponse
+
+# Create your views here.
+def home(request):
+    return HttpResponse("""
+                        <h1> Hola, soy Mijail </h1>
+                        """)
+
+
+-- DESPLEGAR APLICACION
+
+python manage.py runserver
+
+*************** 2 Migraciones ***********************
+
+-- crear tablas de app por default
+python manage.py migrate
+
+-- crear super usuario
+python manage.py createsuperuser
+-- pass:Admin1234
+
+python manage.py runserver
+http://127.0.0.1:8000/admin
+
+http://127.0.0.1:8000/contacto
