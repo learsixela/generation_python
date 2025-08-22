@@ -43,9 +43,17 @@ def crear(request):
         
 #seleccionar 1
 #actualizar
+def editar(request,id):
+    proyecto = Proyecto.objects.get("id",id)
+    #mostrar formulario pre cargado
+    
+    #metodo post
+    #setear los nuevos datos a los atributos
+    proyecto.nombre = request.POST["nombre"]
+    proyecto.save()
+    pass
 #eliminar
-
-{'csrfmiddlewaretoken': ['JXJtrwlBgoF7RvIJ9CbYUqTKeELKWTwcGuiiZRtpoIjcp1jMrusISiDug2gj5Lt7'], 
- 'nombre': ['proyecto 2'], 
- 'descripcion': ['yhujhrtstyawetgw']
- }
+def eliminar(request,id):
+    proyecto = Proyecto.objects.get("id",id)
+    proyecto.delete()
+    return redirect("listar_todos")
