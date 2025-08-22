@@ -79,3 +79,40 @@ python manage.py runserver
 http://127.0.0.1:8000/admin
 
 http://127.0.0.1:8000/contacto
+
+*************** 3 ORM ***********************
+1. crear el usuario en postgresql
+2. crear una base da datos con el mismo nombre del usuario
+3. instalamos en nuestro entorno pip install psycopg2-binary
+4. volvemos a las migraciones y ejecutamos
+
+select * from projectos;
+*****
+projectos = Projecto.object.all() 
+
+5. crear un app proyectos
+python manage.py startapp proyectos
+las urls
+6. crear el modelo
+7. ejecutar la migraciones ->
+python -m pip install Pillow
+python manage.py makemigrations
+python manage.py migrate
+
+********************* CRUD ************************
+1. registrar modelo en admin
+from proyectos.models import Proyecto
+
+# Register your models here.
+admin.site.register(Proyecto)
+
+2. crear archivo forms.py, en nuestra app
+from django import forms
+from .models import Proyecto
+
+class ProyectoForm(forms.ModelForm): 
+    class Meta:
+        model: Proyecto
+        fields= '__all__'
+
+3. construir metodos en views
