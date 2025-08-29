@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Proyecto 
 
 # Create your views here.
@@ -44,7 +44,15 @@ def crear(request):
 #seleccionar 1
 #actualizar
 def editar(request,id):
-    proyecto = Proyecto.objects.get("id",id)
+    if request.method == "GET":
+        proyecto = get_object_or_404(Proyecto,pk = id); #Proyecto.objects.get("id",id)        
+        
+        #enviar al html el proyecto
+        context = {
+            "proyecto": proyecto
+        }
+        return render(request,"mostrar_proyecto.html",context)
+    
     #mostrar formulario pre cargado
     
     #metodo post
@@ -54,6 +62,7 @@ def editar(request,id):
     pass
 #eliminar
 def eliminar(request,id):
+    print(id)
     proyecto = Proyecto.objects.get("id",id)
     proyecto.delete()
     return redirect("listar_todos")

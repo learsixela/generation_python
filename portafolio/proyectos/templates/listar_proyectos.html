@@ -9,17 +9,7 @@
 <body>
 
     <div class="container">
-       {{proyectos}}
-       <br>
-       <ul>
-        {% for proyecto in proyectos %}
-            <li>
-                {{proyecto.nombre}} - {{proyecto.descripcion}} - {{proyecto.link}}
-            </li>
-        {% empty %}
-            <li> No existen proyectos registrados</li>
-        {% endfor %}
-       </ul>
+       <a class="btn btn-primary" href="{% url "crear_projecto" %}" role="button">Crear proyecto</a>
 
         <table class="table">
             <thead>
@@ -35,12 +25,15 @@
             <tbody>
                 {% for proyecto in proyectos %}
                     <tr>
-                        <td>{{proyecto.id}}</td>
+                        <td>{{proyecto.pk}}</td>
                         <td>{{proyecto.nombre}}</td>
                         <td>{{proyecto.descripcion}}</td>
                         <td>{{proyecto.link}}</td>
                         <td>{{proyecto.imagen}}</td>
-                        <td>editar - eliminar</td>
+                        <td> 
+                            <a class="btn btn-secondary" href="{% url "editar_projecto" proyecto.id %}" role="button">Editar</a>
+                            <a class="btn btn-danger" href="{% url "eliminar_projecto" proyecto.id%}" role="button">Eliminar</a>
+                        </td>
                     </tr>
                      {% empty %}
                      <tr>
