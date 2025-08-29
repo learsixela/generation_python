@@ -38,9 +38,9 @@ def crear(request):
         #guardar informacion en base datos
         Proyecto.objects.create(nombre=nombre,descripcion=descripcion,link=link   )
         
-        return render(request, "mostrar_proyecto.html",context )
-        #return redirect("/") 
-        
+        #return render(request, "mostrar_proyecto.html",context ) 
+        return redirect("listar_todos")
+    
 #seleccionar 1
 #actualizar
 def editar(request,id):
@@ -63,10 +63,8 @@ def editar(request,id):
         proyecto.save()
         return redirect("listar_todos") 
     
-    
 #eliminar
 def eliminar(request,id):
-    print(id)
-    proyecto = Proyecto.objects.get("id",id)
+    proyecto = get_object_or_404(Proyecto,pk = id)
     proyecto.delete()
     return redirect("listar_todos")

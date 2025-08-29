@@ -28,7 +28,9 @@
                         <td>{{proyecto.pk}}</td>
                         <td>{{proyecto.nombre}}</td>
                         <td>{{proyecto.descripcion}}</td>
-                        <td>{{proyecto.link}}</td>
+                        <td>
+                            <a class="link-opacity-100" href="{{proyecto.link}}">ver {{proyecto.nombre}} </a>
+                        </td>
                         <td>{{proyecto.imagen}}</td>
                         <td> 
                             <a class="btn btn-secondary" href="{% url "editar_projecto" proyecto.id %}" role="button">Editar</a>
@@ -37,7 +39,7 @@
                     </tr>
                      {% empty %}
                      <tr>
-                        <td> No existen proyectos registrados</td>
+                        <td class="col-4"> No existen proyectos registrados</td>
                      </tr>
                         {% endfor %}
                     
