@@ -44,9 +44,8 @@ def crear(request):
 #seleccionar 1
 #actualizar
 def editar(request,id):
+    proyecto = get_object_or_404(Proyecto,pk = id)
     if request.method == "GET":
-        proyecto = get_object_or_404(Proyecto,pk = id); #Proyecto.objects.get("id",id)        
-        
         #enviar al html el proyecto
         context = {
             "proyecto": proyecto
@@ -56,10 +55,15 @@ def editar(request,id):
     #mostrar formulario pre cargado
     
     #metodo post
-    #setear los nuevos datos a los atributos
-    proyecto.nombre = request.POST["nombre"]
-    proyecto.save()
-    pass
+    if request.method == "POST":
+        #setear los nuevos datos a los atributos
+        proyecto.nombre = request.POST["nombre"]
+        proyecto.descripcion = request.POST["descripcion"]
+        proyecto.link = request.POST["link"]
+        proyecto.save()
+        return redirect("listar_todos") 
+    
+    
 #eliminar
 def eliminar(request,id):
     print(id)
