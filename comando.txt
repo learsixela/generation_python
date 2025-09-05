@@ -116,3 +116,11 @@ class ProyectoForm(forms.ModelForm):
         fields= '__all__'
 
 3. construir metodos en views
+
+********** views_api.py ***********
+
+import json
+from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
+from .models import Proyecto
